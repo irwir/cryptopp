@@ -72,7 +72,7 @@ skipFind:
 			return m_threshold;
 
 		m_lastMapPosition = m_inputChannelMap.insert(InputChannelMap::value_type(channelId, (unsigned int)m_inputChannelIds.size())).first;
-		m_inputQueues.push_back(MessageQueue());
+		m_inputQueues.emplace_back();
 		m_inputChannelIds.push_back(channelId);
 
 		if (m_inputChannelIds.size() == size_t(m_threshold))
@@ -148,7 +148,7 @@ void RawIDA::AddOutputChannel(word32 channelId)
 {
 	m_outputChannelIds.push_back(channelId);
 	m_outputChannelIdStrings.push_back(WordToString(channelId));
-	m_outputQueues.push_back(ByteQueue());
+	m_outputQueues.emplace_back();
 	if (m_inputChannelIds.size() == size_t(m_threshold))
 		ComputeV((unsigned int)m_outputChannelIds.size() - 1);
 }

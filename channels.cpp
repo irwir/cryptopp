@@ -265,7 +265,7 @@ size_t ChannelSwitch::ChannelPutModifiable2(const std::string &channel, byte *in
 
 void ChannelSwitch::AddDefaultRoute(BufferedTransformation &destination)
 {
-	m_defaultRoutes.push_back(DefaultRoute(&destination, value_ptr<std::string>(NULLPTR)));
+	m_defaultRoutes.emplace_back(&destination, value_ptr<std::string>(NULLPTR));
 }
 
 void ChannelSwitch::RemoveDefaultRoute(BufferedTransformation &destination)
@@ -280,7 +280,7 @@ void ChannelSwitch::RemoveDefaultRoute(BufferedTransformation &destination)
 
 void ChannelSwitch::AddDefaultRoute(BufferedTransformation &destination, const std::string &outChannel)
 {
-	m_defaultRoutes.push_back(DefaultRoute(&destination, outChannel));
+	m_defaultRoutes.emplace_back(&destination, outChannel);
 }
 
 void ChannelSwitch::RemoveDefaultRoute(BufferedTransformation &destination, const std::string &outChannel)

@@ -81,12 +81,12 @@ template <class T> void DL_FixedBasePrecomputationImpl<T>::PrepareCascade(const 
 		if (fastNegate && r.GetBit(m_windowSize-1))
 		{
 			++e;
-			eb.push_back(BaseAndExponent<Element>(group.Inverse(m_bases[i]), m_exponentBase - r));
+			eb.emplace_back(group.Inverse(m_bases[i]), m_exponentBase - r);
 		}
 		else
-			eb.push_back(BaseAndExponent<Element>(m_bases[i], r));
+			eb.emplace_back(m_bases[i], r);
 	}
-	eb.push_back(BaseAndExponent<Element>(m_bases[i], e));
+	eb.emplace_back(m_bases[i], e);
 }
 
 template <class T> T DL_FixedBasePrecomputationImpl<T>::Exponentiate(const DL_GroupPrecomputation<Element> &group, const Integer &exponent) const

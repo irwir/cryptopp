@@ -415,7 +415,7 @@ void ECP::SimultaneousMultiply(ECP::Point *results, const ECP::Point &P, const I
 	for (i=0; i<expCount; i++)
 	{
 		CRYPTOPP_ASSERT(expBegin->NotNegative());
-		exponents.push_back(WindowSlider(*expBegin++, InversionIsFast(), 5));
+		exponents.emplace_back(*expBegin++, InversionIsFast(), 5);
 		exponents[i].FindNextWindow();
 	}
 
